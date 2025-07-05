@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Herbal Diet Chart Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2e6;
+      color: #2e4d2e;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #2d6a4f;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    #output {
+      margin-top: 20px;
+      background-color: #f0fff0;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 Herbal Diet Chart Generator 🌿</h1>
+  <p>Get your weekly herbal nutrition suggestions!</p>
+
+  <label>Age: <input type="number" id="age"></label><br>
+  <label>Gender:
+    <select id="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  </label><br>
+  <label>Season:
+    <select id="season">
+      <option value="Summer">Summer</option>
+      <option value="Winter">Winter</option>
+      <option value="Rainy">Rainy</option>
+    </select>
+  </label><br>
+
+  <button onclick="generateChart()">Generate Diet Chart</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateChart() {
+      const age = parseInt(document.getElementById("age").value);
+      const gender = document.getElementById("gender").value.toLowerCase();
+      const season = document.getElementById("season").value.toLowerCase();
+      let chart = [];
+
+      if (age < 12) {
+        chart.push("Include milk, fruits like banana and apple");
+        chart.push("Add tulsi water for immunity");
+      } else if (age < 50) {
+        chart.push("Add green vegetables, sprouts, and dry fruits");
+        chart.push("Use ginger and turmeric in meals");
+      } else {
+        chart.push("Light food, more fluids");
+        chart.push("Use herbal tea with cinnamon and cardamom");
+      }
+
+      if (gender === "female") {
+        chart.push("Add iron-rich food like spinach, dates");
+      } else {
+        chart.push("Add protein-rich food like paneer, pulses");
+      }
+
+      if (season === "summer") {
+        chart.push("Drink Amla juice or coconut water");
+        chart.push("Eat cucumber, watermelon, mint chutney");
+      } else if (season === "winter") {
+        chart.push("Drink ginger-tulsi tea");
+        chart.push("Eat sesame ladoos, methi paratha");
+      } else if (season === "rainy") {
+        chart.push("Eat turmeric milk");
+        chart.push("Use neem leaves and clean veggies properly");
+      }
+
+      let outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = "<h3>Your Weekly Herbal Diet Tips:</h3>";
+      chart.forEach((tip, index) => {
+        outputDiv.innerHTML += `<p>Day ${index + 1}: ${tip}</p>`;
+      });
+    }
+  </script>
+</body>
+</html>
